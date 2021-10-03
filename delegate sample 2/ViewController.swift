@@ -7,13 +7,26 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, SecondViewControllerDelegate   {
+    
+    @IBOutlet weak var textLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func secondVCbutton(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(identifier:"SecondViewController") as? SecondViewController
+        vc?.delegate = self
+        navigationController?.pushViewController(vc!, animated: true)
+      
+    }
+    
+    
+    func showData(data: String) {
+        self.textLabel.text = data
+    }
+    
 }
 
